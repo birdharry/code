@@ -1,0 +1,145 @@
+CREATE TABLE tblStaff (
+  `StaffID` INTEGER,
+  `FirstName` VARCHAR(40),
+  `LastName` VARCHAR(40),
+  `TeamLeader` VARCHAR(40),
+  `HourlyRate` INTEGER,
+  PRIMARY KEY (`StaffID`)
+);
+
+
+INSERT INTO tblStaff VALUES
+    (1,'Riley','Genoway','NO',19.5),    
+    (2,'Arianna','Orange ','NO',22.5),
+    (3,'Autumn','Olive ','NO',30),
+    (4,'Irihapeti','Tanis ','NO',24),
+    (5,'Kayla','Olive ','YES',40),
+    (6,'Madison','Schilling ','YES',27.5),
+    (7,'Tane','Hobler ','NO',40),
+    (8,'Christian','Cravener ','NO',24),
+    (9,'Patariki','Gatenby ','NO',24),
+    (10,'Maaka','Howerton ','NO',22.5),
+    (11,'Jeremiah','Hogben ','NO',26),
+    (12,'Patariki','Tafil ','YES',22.5),
+    (13,'Michelle','Dimock ','NO',30),
+    (14,'Shelley','Adams','NO',22.5),
+    (15,'Shelley','Ossowski ','NO',24),
+    (16,'Sophia','Crenshaw ','NO',24),
+    (17,'Lily','Dickinson ','NO',40),
+    (18,'Don7n ','Summa','NO',24),
+    (19,'Caroline','Girouard ','NO',26),
+    (20,'Ngaio','Horine ','NO',22.5),
+    (21,'Michelle','Crispell ','NO',22.5),
+    (22,'Ian','Ossowski ','NO',24),
+    (23,'Joseph','Meadows ','YES',27.5),
+    (24,'Arianna','Saunders ','YES',27.5),
+    (25,'Isaiah','Howe ','NO',24),
+    (26,'John','Crossland ','NO',22.5),
+    (27,'Caroline','Oaks ','NO',24),
+    (28,'Lauren','Ruff ','NO',26),
+    (29,'Tyler','Probert ','NO',30),
+    (30,'Shelley','Hook ','NO',22.5),
+    (31,'Kylie','Elwell ','NO',24),
+    (32,'Jenna','Oakes ','NO',27.5),
+    (33,'Caroline','Hughes ','NO',22.5),
+    (34,'Brandon','Crawford ','YES',40),
+    (35,'Caroline','Gephart ','NO',22.5),
+    (36,'Jackie','Chan ','NO',30),
+    (37,'Cliff','Curtis ','YES',40);
+
+CREATE TABLE tblRoster (
+  `RosterID` INTEGER,
+  `Station` VARCHAR(40),
+  `PerformanceID` INTEGER,
+  `StaffID` INTEGER,
+  PRIMARY KEY (`RosterID`),
+  KEY `FK` (`PerformanceID`, `StaffID`)
+);
+
+
+INSERT INTO tblRoster VALUES
+    (1,'Back Stage',29,14),
+    (2,'Back Stage',3,5),
+    (3,'Back Stage',14,3),
+    (4,'Back Stage',25,4),
+    (5,'Back Stage',15,15),
+    (6,'Back Stage',13,2),
+    (7,'Back Stage',24,8),
+    (8,'Back Stage',10,10),
+    (9,'Back Stage',34,15),
+    (10,'Back Stage',12,7),
+    (11,'Theatre',27,6),
+    (12,'Theatre',1,16),
+    (13,'Theatre',23,6),
+    (14,'Theatre',31,7),
+    (15,'Theatre',26,3),
+    (16,'Theatre',22,4),
+    (17,'Theatre',17,1),
+    (18,'Theatre',16,10),
+    (19,'Theatre',32,16),
+    (20,'Theatre',8,11),
+    (21,'Theatre',5,14),
+    (22,'Theatre',5,12),
+    (23,'Theatre',35,9),
+    (24,'Front House',6,5),
+    (25,'Front House',11,1),
+    (26,'Front House',20,2),
+    (27,'Front House',30,11),
+    (28,'Front House',19,16),
+    (29,'Front House',7,9),
+    (30,'Front House',28,13),
+    (31,'Front House',2,4),
+    (32,'Front House',33,15),
+    (33,'Front House',4,12),
+    (34,'Front House',21,13),
+    (35,'Front House',18,8);
+
+CREATE TABLE tblPerformance (
+  `PerformanceID` INTEGER,
+  `Date` CHAR(50),
+  `Time` CHAR(50),
+  PRIMARY KEY (`PerformanceID`)
+);
+
+INSERT INTO tblPerformance VALUES
+    (1,'2019-9-26','19:30:00'),
+    (2,'2019-9-27','19:30:00'),
+    (3,'2019-9-28','19:30:00'),
+    (4,'2019-9-29','17:00:00'),
+    (5,'2019-10-3','19:30:00'),
+    (6,'2019-10-4','19:30:00'),
+    (7,'2019-10-5','13:30:00'),
+    (8,'2019-10-5','19:30:00'),
+    (9,'2019-10-6','13:30:00'),
+    (10,'2019-10-6','19:30:00'),
+    (11,'2019-10-9','19:30:00'),
+    (12,'2019-10-10','19:30:00'),
+    (13,'2019-10-11','19:30:00'),
+    (14,'2019-10-11','13:30:00'),
+    (15,'2019-10-12','19:30:00'),
+    (16,'2019-10-13','19:30:00');
+/* #3
+SELECT `LastName` FROM tblStaff
+ORDER BY `LastName` DESC;
+*/
+/* #4
+SELECT * FROM tblStaff
+WHERE `TeamLeader` = 'YES' AND `HourlyRate` = 40
+*/
+/* #5
+SELECT * FROM tblStaff
+WHERE `FirstName`  LIKE '%[0-9]%' OR `LastName`  LIKE '%[0-9]%' ;
+*/
+/* #7
+SELECT DISTINCT `FirstName`, `LastName`, `Station` FROM tblRoster, tblStaff
+WHERE `Station` = 'Front House'
+*/
+/* #8
+SELECT `Station`, COUNT(*)
+FROM tblRoster
+GROUP BY `Station`
+*/
+/* #9
+SELECT `HourlyRate` FROM tblStaff
+ORDER BY `HourlyRate` ASC
+LIMIT 1;
